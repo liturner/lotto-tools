@@ -13,9 +13,25 @@
       <name>Apache License, Version 2.0</name>
       <url>https://www.apache.org/licenses/LICENSE-2.0.txt</url>
       <distribution>repo</distribution>
-      <comments>A business-friendly OSS license</comments>
     </license>
   </licenses>
+
+  <organization>
+    <name>TurnerTech</name>
+  </organization>
+
+  <developers>
+    <developer>
+      <id>liturner</id>
+      <name>Luke Ian Turner</name>
+      <email>turnertech@outlook.de</email>
+      <organization>TurnerTech</organization>
+      <roles>
+        <role>Developer</role>
+      </roles>
+      <timezone>Europe/Berlin</timezone>
+    </developer>
+  </developers>
 
   <issueManagement>
     <system>Azure DevOps</system>
