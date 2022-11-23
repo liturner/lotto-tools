@@ -34,14 +34,7 @@ public class AnalysisResult {
     }
 
     public void print() {
-        for (BallProbability ballProbability : probabilities) {
-            System.out.printf(" | %2s : %.4f", ballProbability.getNumber(), ballProbability.getProbability());
-            if(ballProbability.getNumber() % 10 == 0) {
-                System.out.print(" |\n");
-            }
-        }
-        Logging.LOGGER.log(Level.INFO, "\n ## Recomended Balls\n");
-        System.out.println(balls);
+        Logging.LOGGER.log(Level.INFO, "Print using a good string format and lots of .toString");
     }
 
 }

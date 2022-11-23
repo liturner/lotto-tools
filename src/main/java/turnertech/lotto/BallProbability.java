@@ -48,6 +48,11 @@ public class BallProbability implements Comparable<BallProbability> {
         return this.number == ((BallProbability)other).number && this.probability == ((BallProbability)other).probability;
     }
 
+    @Override
+    public int hashCode() {
+        return Double.hashCode(probability) + Integer.hashCode(number);
+    }
+
     /** Getter for the ball number
      * @author Luke Ian Turner
      * @since 1.0.0
