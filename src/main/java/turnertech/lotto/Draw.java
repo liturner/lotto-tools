@@ -1,5 +1,9 @@
 package turnertech.lotto;
 
+/** Represents a single draw of 6aus49.
+ * @author Luke Ian Turner
+ * @since 1.0.0
+*/
 public class Draw {
     
     private final int[] numbers;
@@ -18,6 +22,13 @@ public class Draw {
         this.bonus = bonus;
     }
 
+    /** Simple check function to query if a certain number is in the draw. Note that
+     * any number can be passed to the check.
+     * @author Luke Ian Turner
+     * @since 1.0.0
+     * @param number Integer number to check if it is contained in the draw
+     * @return True or False
+     */
     public boolean hasNumber(final int number) {
         for (int n : numbers) {
             if(n == number) {
