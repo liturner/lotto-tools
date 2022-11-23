@@ -19,31 +19,34 @@
 
   <build>
     <plugins>
-     <plugin>
-      <groupId>org.jacoco</groupId>
-      <artifactId>jacoco-maven-plugin</artifactId>
-      <version>0.5.10.201208310627</version>
-      <configuration>
-        <skip>${maven.test.skip}</skip>
-        <output>file</output>
-        <append>true</append>
-      </configuration>
-      <executions>
-        <execution>
-            <id>jacoco-initialize</id>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-surefire-plugin</artifactId>
+        <version>3.0.0-M5</version>
+        <configuration>
+          <disableXmlReport>false</disableXmlReport>
+          <useFile>false</useFile>
+        </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.jacoco</groupId>
+        <artifactId>jacoco-maven-plugin</artifactId>
+        <version>0.8.8</version>
+        <executions>
+          <execution>
+            <id>default-prepare-agent</id>
             <goals>
-                <goal>prepare-agent</goal>
+              <goal>prepare-agent</goal>
             </goals>
-        </execution>
-        <execution>
-            <id>jacoco-site</id>
-            <phase>verify</phase>
+          </execution>
+          <execution>
+            <id>default-report</id>
             <goals>
-                <goal>report</goal>
+              <goal>report</goal>
             </goals>
-        </execution>
-      </executions>
-    </plugin>
+          </execution>
+        </executions>
+      </plugin>
     </plugins>
   </build>
 

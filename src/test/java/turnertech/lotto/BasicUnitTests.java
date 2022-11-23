@@ -4,9 +4,9 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
-public class BasicTests {
+public class BasicUnitTests {
     @Test
 	public void dummyTest() {
-        assertTrue(true);
+        assertTrue(Helper.isValidBall(0));
     }
 }
