@@ -23,4 +23,5 @@ steps:
     codeCoverageTool: 'JaCoCo'
     summaryFileLocation: 'target/site/jacoco/jacoco.xml'
     pathToSources: 'src/main/java'
+    reportDirectory: 'target/site/jacoco'
     failIfCoverageEmpty: true
