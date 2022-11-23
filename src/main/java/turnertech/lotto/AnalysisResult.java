@@ -2,6 +2,7 @@ package turnertech.lotto;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.logging.Level;
 
 public class AnalysisResult {
     
@@ -14,9 +15,9 @@ public class AnalysisResult {
         this.balls = Collections.unmodifiableList(balls);
     }
 
-    public Double chanceOf(final Integer number) {
+    public Double chanceOf(final int number) {
         for (BallProbability ballProbability : probabilities) {
-            if(ballProbability.getNumber().equals(number)) {
+            if(ballProbability.getNumber() == number) {
                 return ballProbability.getProbability();
             }
         }
@@ -39,7 +40,7 @@ public class AnalysisResult {
                 System.out.print(" |\n");
             }
         }
-        System.out.print("\n ## Recomended Balls\n");
+        Logging.LOGGER.log(Level.INFO, "\n ## Recomended Balls\n");
         System.out.println(balls);
     }
 
