@@ -21,6 +21,6 @@ steps:
 - task: PublishCodeCoverageResults@1
   inputs:
     codeCoverageTool: 'JaCoCo'
-    summaryFileLocation: 'target/jacoco.exec'
+    summaryFileLocation: 'target/site/jacoco/jacoco.xml'
     pathToSources: 'src/main/java'
     failIfCoverageEmpty: true
