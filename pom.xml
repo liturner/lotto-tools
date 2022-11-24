@@ -42,10 +42,10 @@
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <maven.compiler.source>8</maven.compiler.source>
-    <maven.compiler.target>8</maven.compiler.target>
-    <maven.compiler.release>8</maven.compiler.release>
-    <sonar.java.source>8</sonar.java.source>
+    <maven.compiler.source>17</maven.compiler.source>
+    <maven.compiler.target>17</maven.compiler.target>
+    <maven.compiler.release>17</maven.compiler.release>
+    <sonar.java.source>17</sonar.java.source>
     <downloadSources>true</downloadSources>
 		<downloadJavadocs>true</downloadJavadocs>
   </properties>
@@ -102,6 +102,7 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-javadoc-plugin</artifactId>
+        <version>3.4.1</version>
         <executions>
           <execution>
             <id>attach-javadocs</id>
