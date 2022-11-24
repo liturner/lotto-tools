@@ -1,8 +1,13 @@
-package turnertech.lotto;
+package turnertech.lotto.analysis.methods;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+
+import turnertech.lotto.BallProbability;
+import turnertech.lotto.Draw;
+import turnertech.lotto.analysis.AnalysisMethod;
+import turnertech.lotto.analysis.AnalysisResult;
 
 /**
  * This Analysis uses a sample based on the last time a particular number appeared. Using basic probability multiplcation we then accumulate the chance of rolling any other number for untill the last draw. This method shows how the chance of drawing a number which has not been drawn in several draws, slowly increases. Note, that the probabilities returned here are not normalised and do not represent percentage chances.

@@ -1,13 +1,15 @@
 package turnertech.lotto;
 
-/** Represents the pairing of a ball, and its probability.
+/** 
+ * Represents the pairing of a ball, and its probability.
  * 
- * First probability is compared, then if equal the ball number. This is to ensure that
- * the compare to and equals contract are compatible.
+ * When handling natural ordering, first probability is compared, then if 
+ * equal the ball number. This is to ensure that the compare to and equals 
+ * contract are compatible.
  * 
  * This class is intended to be immutable.
  * 
- * This class does not require probability to be normalized between 0 and 1.
+ * This class requires probability to be normalized between 0 and 1.
  * 
  * @author Luke Ian Turner
  * @since 1.0.0
@@ -18,7 +20,20 @@ public class BallProbability implements Comparable<BallProbability> {
 
     private final double probability;
     
+    /**
+     * Constructor with all information. The class is immutable.
+     * 
+     * @param number The ball number.
+     * @param probability Its probability.
+     */
     public BallProbability(final int number, final double probability) {
+        if(!Helper.isValidBall(number)) {
+            throw new IllegalArgumentException("BallProbability was passed an invalid ball number");
+        }
+        if(!Helper.isValidProbability(probability)) {
+            throw new IllegalArgumentException("BallProbability was passed an invalid probability");
+        }
+
         this.number = number;
         this.probability = probability;
     }
