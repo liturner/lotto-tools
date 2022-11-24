@@ -3,6 +3,7 @@ package turnertech.lotto;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -47,7 +48,8 @@ public class Helper {
      * Loads a lotto draw archive into memory.
      * 
      * https://www.lotto-bayern.de/lotto6aus49/gewinnzahlen
-     * 
+     *
+     * @param drawFile The lotto data to open.
      * @return A List of draws.
      */
     public static List<Draw> loadDraws(URL drawFile) {
@@ -63,7 +65,6 @@ public class Helper {
         int ball5 = 0;
         int ball6 = 0;
         int bonusball = 0;
-
 
         try (InputStream inputStream = drawFile.openStream()) {
             try (Scanner scanner = new Scanner(inputStream)) {
@@ -88,7 +89,7 @@ public class Helper {
                     ball6 = Integer.valueOf(column[8]);
                     bonusball = Integer.valueOf(column[11]);
 
-                    draws.add(new Draw(ball1, ball2, ball3, ball4, ball5, ball6, bonusball));
+                    draws.add(new Draw(ball1, ball2, ball3, ball4, ball5, ball6, bonusball, LocalDate.of(year, month, day)));
                 }
             }
         } catch (NumberFormatException | IOException e) {
