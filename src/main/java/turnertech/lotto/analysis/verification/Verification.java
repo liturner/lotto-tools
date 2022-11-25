@@ -42,19 +42,33 @@ public class Verification {
      */
     public VerificationResult verify() {
         AnalysisMethod instantiatedAnalysisMethod = null;
-        try {
-            instantiatedAnalysisMethod = analysisMethod.getDeclaredConstructor().newInstance();
-        } catch (InstantiationException | IllegalAccessException | IllegalArgumentException | InvocationTargetException
-                | NoSuchMethodException | SecurityException e) {
-            Logging.LOGGER.log(Level.SEVERE, "Failed to instantiate the AnalysisMethod.", e);
-            return null;
-        }   
-        
-        //ToDo: here should be a much more complex analysis of the ball execution over time.
-        AnalysisResult analysisResult = instantiatedAnalysisMethod.analyse(draws);
+        AnalysisResult analysisResult = null;
+
+        int lastXdraws = 100;
+        while(lastXdraws > 0) {
+            List<Draw> historicalSet = draws.subList(0, draws.size() - lastXdraws);
+            Draw actuallDraw = draws.get(draws.size() - lastXdraws);
+            
+            try {
+                instantiatedAnalysisMethod = analysisMethod.getDeclaredConstructor().newInstance();
+            } catch (InstantiationException | IllegalAccessException | IllegalArgumentException | InvocationTargetException
+                    | NoSuchMethodException | SecurityException e) {
+                Logging.LOGGER.log(Level.SEVERE, "Failed to instantiate the AnalysisMethod.", e);
+                return null;
+            }   
+            
+            analysisResult = instantiatedAnalysisMethod.analyse(historicalSet);
+            // ToDo here we need to check the union set.
+            analysisResult.recomendedBalls();
+            
+
+            --lastXdraws;
+        }
+
         VerificationResult verificationResult = new VerificationResult();
         verificationResult.setLastAnalysisResult(analysisResult);
 
+        draws.subList(0, 666);
 
 
         return verificationResult;

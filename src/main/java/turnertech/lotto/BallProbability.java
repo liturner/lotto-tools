@@ -86,4 +86,9 @@ public class BallProbability implements Comparable<BallProbability> {
         return this.probability;
     }
 
+    @Override
+    public String toString() {
+        return String.format("(%2d - %.2f)", this.number, this.probability);
+    }
+
 }

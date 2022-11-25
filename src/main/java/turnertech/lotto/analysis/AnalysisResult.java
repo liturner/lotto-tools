@@ -17,7 +17,7 @@ import turnertech.lotto.analysis.verification.VerificationResult;
  */
 public class AnalysisResult {
     
-    private final AnalysisDescription analysisMethod;
+    private final AnalysisDescription analysisDescription;
 
     private final List<BallProbability> probabilities;
 
@@ -30,8 +30,12 @@ public class AnalysisResult {
      * @param probabilities List of probabilities for all balls
      * @param balls List of balls recomended to be drawn
      */
-    public AnalysisResult(AnalysisDescription analysisMethod, final List<BallProbability> probabilities, final List<Integer> balls) {
-        this.analysisMethod = analysisMethod;
+    public AnalysisResult(AnalysisMethod analysisMethod, final List<BallProbability> probabilities, final List<Integer> balls) {
+        this.analysisDescription = analysisMethod.getClass().getAnnotation(AnalysisDescription.class);
+        if(analysisDescription == null) {
+            throw new IllegalArgumentException("analysisMethod must implement the AnalysisDescription annotation");
+        }
+
         this.probabilities = Collections.unmodifiableList(probabilities);
         this.balls = Collections.unmodifiableList(balls);
     }
@@ -68,12 +72,22 @@ public class AnalysisResult {
      * @return Name, as passed in by the {@link AnalysisDescription}
      */
     public String getAnalysisName() {
-        return analysisMethod.name();
+        return analysisDescription.name();
+    }
+
+    /**
+     * Gets the author from the {@link AnalysisDescription} interface
+     * of the analysis method.
+     * 
+     * @return Author's name
+     */
+    public String getAnalysisAuthor() {
+        return analysisDescription.author();
     }
 
     @Override
     public String toString() {
-        return balls.toString();
+        return String.format("%n# Method: %s%n%n## Author: %s%n%n- Predicted Balls: %s%n- Ball Probabilities: %s%n", this.getAnalysisName(), this.getAnalysisAuthor(), recomendedBalls().toString(), probabilities);
     }
 
 }

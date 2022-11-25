@@ -35,7 +35,7 @@ public class BasicAnalysis implements AnalysisMethod {
             balls.add(ball, ballProbabilities.get(ball).getNumber());
         }
 
-        return new AnalysisResult((AnalysisDescription) this, ballProbabilities, balls);
+        return new AnalysisResult(this, ballProbabilities, balls);
     }
 
     private static Double chanceOf(final List<Draw> draws, final int number) {        
