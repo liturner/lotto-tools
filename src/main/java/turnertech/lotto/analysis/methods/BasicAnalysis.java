@@ -6,12 +6,14 @@ import java.util.List;
 
 import turnertech.lotto.BallProbability;
 import turnertech.lotto.Draw;
+import turnertech.lotto.analysis.AnalysisDescription;
 import turnertech.lotto.analysis.AnalysisMethod;
 import turnertech.lotto.analysis.AnalysisResult;
 
 /**
  * This Analysis uses a sample based on the last time a particular number appeared. Using basic probability multiplcation we then accumulate the chance of rolling any other number for untill the last draw. This method shows how the chance of drawing a number which has not been drawn in several draws, slowly increases. Note, that the probabilities returned here are not normalised and do not represent percentage chances.
  */
+@AnalysisDescription(name = "Least Drawn", author = "Luke Ian Turner")
 public class BasicAnalysis implements AnalysisMethod {
     
     // Chance of any one other ball occuring in any one draw.
@@ -26,7 +28,6 @@ public class BasicAnalysis implements AnalysisMethod {
             ballProbabilities.add(ballProbability);
         }
 
-
         // Get the most likely balls
         Collections.sort(ballProbabilities);
         Collections.reverse(ballProbabilities);
@@ -34,7 +35,7 @@ public class BasicAnalysis implements AnalysisMethod {
             balls.add(ball, ballProbabilities.get(ball).getNumber());
         }
 
-        return new AnalysisResult(ballProbabilities, balls);
+        return new AnalysisResult((AnalysisDescription) this, ballProbabilities, balls);
     }
 
     private static Double chanceOf(final List<Draw> draws, final int number) {        

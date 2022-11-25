@@ -45,8 +45,10 @@ public class Draw {
         this.drawDate = drawDate;
     }
 
-    /** Simple check function to query if a certain number is in the draw. Note that
+    /** 
+     * Simple check function to query if a certain number is in the draw. Note that
      * any number can be passed to the check.
+     * 
      * @author Luke Ian Turner
      * @since 1.0.0
      * @param number Integer number to check if it is contained in the draw
@@ -61,8 +63,10 @@ public class Draw {
         return false;
     }
 
-    /** Simple check function to query if a certain number is the bonus ball. Note that
+    /** 
+     * Simple check function to query if a certain number is the bonus ball. Note that
      * any number can be passed to the check.
+     * 
      * @author Luke Ian Turner
      * @since 1.0.0
      * @param number Integer number to check if it is contained in the draw
@@ -70,6 +74,17 @@ public class Draw {
      */
     public boolean hasBonus(final int number) {
         return number == bonus;
+    }
+
+    /**
+     * Getter for the date of the draw.
+     * 
+     * @author Luke Ian Turner
+     * @since 1.0.0
+     * @return The date of the draw.
+     */
+    public LocalDate getDrawDate() {
+        return drawDate;
     }
 
 }
