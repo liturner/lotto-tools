@@ -1,6 +1,7 @@
 package turnertech.lotto.analysis.verification;
 
 import java.lang.reflect.InvocationTargetException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 
@@ -43,8 +44,9 @@ public class Verification {
     public VerificationResult verify() {
         AnalysisMethod instantiatedAnalysisMethod = null;
         AnalysisResult analysisResult = null;
-
         int lastXdraws = 100;
+        VerificationResult verificationResult = new VerificationResult(lastXdraws);
+
         while(lastXdraws > 0) {
             List<Draw> historicalSet = draws.subList(0, draws.size() - lastXdraws);
             Draw actuallDraw = draws.get(draws.size() - lastXdraws);
@@ -58,18 +60,17 @@ public class Verification {
             }   
             
             analysisResult = instantiatedAnalysisMethod.analyse(historicalSet);
-            // ToDo here we need to check the union set.
-            analysisResult.recomendedBalls();
             
-
+            List<Integer> hits = new ArrayList<>(6);
+            for (Integer number : analysisResult.recomendedBalls()) {
+                if(actuallDraw.hasNumber(number)) {
+                    hits.add(number);
+                }
+            }
+            
+            verificationResult.addAnalysisResult(analysisResult, hits);
             --lastXdraws;
         }
-
-        VerificationResult verificationResult = new VerificationResult();
-        verificationResult.setLastAnalysisResult(analysisResult);
-
-        draws.subList(0, 666);
-
 
         return verificationResult;
     }

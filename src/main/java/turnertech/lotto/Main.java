@@ -6,6 +6,7 @@ import java.util.logging.Level;
 
 import turnertech.lotto.analysis.AnalysisMethod;
 import turnertech.lotto.analysis.methods.BasicAnalysis;
+import turnertech.lotto.analysis.methods.PureRandom;
 import turnertech.lotto.analysis.verification.Verification;
 import turnertech.lotto.analysis.verification.VerificationResult;
 
@@ -25,9 +26,11 @@ public class Main {
 
         List<Class<? extends AnalysisMethod>> analysisMethods = new ArrayList<>();
         analysisMethods.add(BasicAnalysis.class);
+        analysisMethods.add(PureRandom.class);
 
         for (Class<? extends AnalysisMethod> analysisMethod : analysisMethods) {
             VerificationResult verificationResult = new Verification(analysisMethod, draws).verify();
+            Logging.LOGGER.log(Level.INFO, () -> verificationResult.toString());
             Logging.LOGGER.log(Level.INFO, () -> verificationResult.getLastAnalysisResult().toString());
         }
     }

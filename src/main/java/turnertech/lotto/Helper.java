@@ -89,7 +89,7 @@ public class Helper {
                     ball6 = Integer.valueOf(column[8]);
                     bonusball = Integer.valueOf(column[11]);
 
-                    draws.add(new Draw(ball1, ball2, ball3, ball4, ball5, ball6, bonusball, LocalDate.of(year, month, day)));
+                    draws.add(new Draw(List.of(ball1, ball2, ball3, ball4, ball5, ball6, bonusball), LocalDate.of(year, month, day)));
                 }
             }
         } catch (NumberFormatException | IOException e) {
