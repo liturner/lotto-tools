@@ -31,7 +31,7 @@ public class Helper {
      * @return True or False
      */
     public static boolean isValidBall(final int number) {
-        return number > -1 && number < 50;
+        return number > 0 && number < 50;
     }
 
     /**
@@ -89,7 +89,7 @@ public class Helper {
                     ball6 = Integer.valueOf(column[8]);
                     bonusball = Integer.valueOf(column[11]);
 
-                    draws.add(new Draw(List.of(ball1, ball2, ball3, ball4, ball5, ball6, bonusball), LocalDate.of(year, month, day)));
+                    draws.add(new Draw(List.of(ball1, ball2, ball3, ball4, ball5, ball6), LocalDate.of(year, month, day)));
                 }
             }
         } catch (NumberFormatException | IOException e) {

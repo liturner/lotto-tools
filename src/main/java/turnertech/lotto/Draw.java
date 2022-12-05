@@ -24,7 +24,7 @@ public class Draw {
      * @param drawDate The date the draw took place
      */
     public Draw(List<Integer> numbers, final LocalDate drawDate) {
-        if(numbers == null || numbers.size() != 7) {
+        if(numbers == null || numbers.size() != 6) {
             throw new IllegalArgumentException("Incorrect number of balls passed to draw constructor.");
         }
         for(Integer number : numbers) {
@@ -79,6 +79,10 @@ public class Draw {
      */
     public LocalDate getDrawDate() {
         return drawDate;
+    }
+
+    public List<Integer> getNumbers() {
+        return numbers;
     }
 
 }

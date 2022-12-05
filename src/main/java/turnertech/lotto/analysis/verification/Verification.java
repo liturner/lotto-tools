@@ -47,6 +47,8 @@ public class Verification {
         int lastXdraws = 100;
         VerificationResult verificationResult = new VerificationResult(lastXdraws);
 
+        String csv = "";
+
         while(lastXdraws > 0) {
             List<Draw> historicalSet = draws.subList(0, draws.size() - lastXdraws);
             Draw actuallDraw = draws.get(draws.size() - lastXdraws);
@@ -60,10 +62,16 @@ public class Verification {
             }   
             
             analysisResult = instantiatedAnalysisMethod.analyse(historicalSet);
+
+            for(Integer number : actuallDraw.getNumbers()) {
+                csv += analysisResult.chanceOf(number).toString() + "\n";
+            }
+            
             
             List<Integer> hits = new ArrayList<>(6);
             for (Integer number : analysisResult.recomendedBalls()) {
                 if(actuallDraw.hasNumber(number)) {
+                    Logging.LOGGER.log(Level.INFO, String.format("Ball guessed correctly with chance: %.3f", analysisResult.chanceOf(number)));
                     hits.add(number);
                 }
             }
@@ -71,6 +79,7 @@ public class Verification {
             verificationResult.addAnalysisResult(analysisResult, hits);
             --lastXdraws;
         }
+        Logging.LOGGER.log(Level.INFO, csv);       
 
         return verificationResult;
     }
